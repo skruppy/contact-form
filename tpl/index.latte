@@ -1,0 +1,56 @@
+<!DOCTYLE html>
+{*
+This file is part of contact-form <https://github.com/skruppy/contact-form>
+Copyright (c) Skruppy <skruppy@onmars.eu>
+SPDX-License-Identifier: Apache-2.0
+*}
+
+<html lang="en">
+	<head>
+		<title>Contacting mars</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="noindex" />
+		<link rel="stylesheet" type="text/css" href="../index.css" />
+		<script src="../widget.min.js" async defer></script>
+	</head>
+
+	<body>
+		<div class="block">
+			<main class="centered box content-box content-box-small">
+				<h1>Contact</h1>
+
+				<p>
+					If you want to get in touch with the technicians on mars, you can use this form to send them a message through space, or at least the internet.
+				</p>
+
+				<p n:foreach="$flashMessages as $flashMessage" class="box box-{$flashMessage['type']}">{$flashMessage['message']}</p>
+
+				<p n:if="$form->ownErrors" class="box box-fail">
+					The massage could not be send because of
+					<ul>
+						<li n:foreach="$form->ownErrors as $error">{$error}</li>
+					</ul>
+				</p>
+
+				<form method="POST" n:name=$form>
+					<div
+						n:class="control-group, $control->getLabel() ? 'control-group-floating', $control->error ? 'invalid-input'"
+						n:foreach="$form->getControls() as $control"
+						n:ifcontent
+					>
+						{input $control}
+						{label $control /}
+						<div class="small error" n:ifcontent>{$control->error}</div>
+					</div>
+				</form>
+			</main>
+		</div>
+
+		<script>
+			// Prevent re-submission when the user reloads the page.
+			if (window.history.replaceState) {
+				window.history.replaceState(null, null, window.location.href);
+			}
+		</script>
+	</body>
+</html>

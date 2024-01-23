@@ -1,0 +1,22 @@
+{
+    "name": "skruppy/contact-form",
+    "description": "Contact form using Friendly Captcha",
+    "type": "project",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Skruppy",
+            "email": "skruppy@onmars.eu"
+        }
+    ],
+    "require": {
+        "friendlycaptcha/sdk": "^0.1.0",
+        "phpmailer/phpmailer": "^6.9.1",
+        "latte/latte": "^3.0",
+        "nette/forms": "^3.1"
+    },
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {"ContactForm\\": "src/"}
+    }
+}
